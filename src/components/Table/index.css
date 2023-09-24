@@ -31,3 +31,12 @@
 .Gray {
     background-color: gray;
 }
+.Turno {
+    font-size: 26px;
+    font-weight: 500;
+    width: 200px;
+    height: fit-content;
+    border-radius: .5em;
+    padding: 15px;
+    text-align: center;
+}

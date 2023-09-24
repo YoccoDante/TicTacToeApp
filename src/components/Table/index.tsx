@@ -72,6 +72,7 @@ function Table() {
   }
 
   const tableClass = victory? 'Table Green' : defeat? 'Table Red' : 'Table'
+  const turnClass = turn? 'Turno Green' : 'Turno Red'
 
   useEffect(() => {
     checkVictory()
@@ -95,7 +96,7 @@ function Table() {
       </div>
     )}
     </div>
-    <p>Es el turno de :{turn? 'X' : 'O'}</p>
+    <p className={turnClass}>{turn? 'Te toca' : 'es el turno de: O'}</p>
     {tie &&
       <Dialog action={replay} text="Ha sido un empate, piensa mejor! Deseas jugar otra vez?"/>
     }
