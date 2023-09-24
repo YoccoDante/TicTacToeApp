@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import { TableModel } from "../../models/tableModel"
 import './index.css'
 import Dialog from "../Dialog"
+import useBackendConnection from "../../hooks/backendConnection"
 
 function Table() {
+  const {MakeAiMove, CheckVictory} = useBackendConnection()
   const [ victory, setVictory ] = useState(false)
   const [ defeat, setDefeat ] = useState(false)
   const [ tie, setTie ] = useState(false)
@@ -62,74 +64,22 @@ function Table() {
   }
 
   const makeAIMove =async () => {
-    const espacios = espaciosLibres()
-    if (espacios === 0) {
-      return
-    }
-    try {
-      const res = await fetch('http://127.0.0.1:5000/auto',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({mapa:table})
-      })
-      const data = await res.json()
-      if (data.error){
-        setTie(true)
-      }
-      const fila = data.msg[0]
-      const valor = data.msg[1]
-      placeSimbol(fila, valor)
-    }
-    catch(error){
-      setTie(true)
-    }
-    finally {
-      setTurn(true)
-    }
+    MakeAiMove({table, setTurn, placeSimbol})
   }
 
   const checkVictory = async () => {
-    const espacios = espaciosLibres()
-    if (espacios === 0) {
-      setTie(true)
-      return
-    }
-    try {
-      const res = await fetch('http://127.0.0.1:5000/result',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({mapa:table})
-      })
-      const data = await res.json()
-      if (data.victory){
-        setVictory(true)
-      } 
-      if (data.defeat) {
-        setDefeat(true)
-      }
-      if (data.tie){
-        setTie(true)
-      }
-    }
-    catch(error){
-      setTie(true)
-    }
+    CheckVictory({table, setVictory, setTie, setDefeat})
   }
-    
-    
 
   const tableClass = victory? 'Table Green' : defeat? 'Table Red' : 'Table'
 
   useEffect(() => {
+    checkVictory()
+    const espacios = espaciosLibres()
     if(!turn){
       makeAIMove()
     }
-    checkVictory()
-  },[placeSimbol])
+  },[turn])
 
   return (
     <>
