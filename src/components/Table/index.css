@@ -1,0 +1,33 @@
+.TableCell {
+    width: 100px;
+    height: 100px;
+    background-color:  #008080;
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+}
+.Table {
+    width: fit-content;
+    height: fit-content;
+    padding: 25px;
+    background-color: cornflowerblue;
+    border-radius: 1em;
+}
+.TableRow {
+    display: flex;
+    gap: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.Green {
+    background-color: green;
+}
+.Red {
+    background-color: red;
+}
+.Gray {
+    background-color: gray;
+}

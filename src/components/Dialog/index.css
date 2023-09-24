@@ -1,0 +1,43 @@
+.DialogContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.DialogBody {
+    height: 175px;
+    width: fit-content;
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 0 5px 0 #b5b2aa;
+}
+
+.DialogText {
+    text-align: center;
+    font-size: 26px;
+}
+
+.DialogButton {
+    position: relative;
+    border: none;
+    width: 75px;
+    height: 50px;
+    background-color: #b5b2aa;
+    box-shadow: 1px 1px 3px #000;
+    border-radius: 0.5em;
+}
+
+.DialogButtonContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 10px;
+    width: 100%;
+}
